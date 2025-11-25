@@ -1,0 +1,221 @@
+.burger-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.burger-icon {
+  width: 30px;
+  height: 20px;
+  position: relative;
+}
+
+.burger-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: azure;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.burger-icon span:nth-child(1) { top: 0; }
+.burger-icon span:nth-child(2) { top: 8px; }
+.burger-icon span:nth-child(3) { top: 16px; }
+
+.burger-icon.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 8px;
+}
+
+.burger-icon.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-icon.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .burger-menu {
+    display: block;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    transition: all 0.3s ease;
+  }
+
+  .navbar.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    display: block;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .navbar ul li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(20, 23, 24);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  color: white;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  right: -15px;
+  top: -20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.close-modal:hover {
+  color: #ddd;
+}
+
+.modal h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.modal input {
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+  transition: border-color 0.3s ease;
+}
+
+.modal input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+}
+
+.modal input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.modal .btn-1 {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal .btn-1:hover {
+  background-color: #45a049;
+}
+
+.switch-form {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.switch-form a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.switch-form a:hover {
+  text-decoration: underline;
+}
+
+
+.user-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#logout-button {
+  padding: 8px 16px;
+  background-color: #dc3545;  /* Color rojo para el botón de logout */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#logout-button:hover {
+  background-color: #c82333;
+}
+
+.btn-1 {
+  display: inline-block;
+  padding: 12px 45px;
+  border: 1px solid #fffdfc;
+  color: #fffdfc;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.btn-1:hover {
+  color: black;
+  background-color: #fffdfc;
+}

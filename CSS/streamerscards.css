@@ -1,0 +1,148 @@
+/* Contenedor principal del dashboard */
+#streamer-cards-root {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Grid responsivo para las tarjetas */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Estilos para las tarjetas individuales */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header de la tarjeta */
+.card-header {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+  padding: 1rem;
+}
+
+/* Estilos para la imagen del streamer */
+.avatar-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estadísticas del personaje */
+.stats-container {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+/* Botones de mejora */
+.upgrade-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.upgrade-button.life {
+  background-color: #dc3545;
+  color: white;
+}
+
+.upgrade-button.life:hover {
+  background-color: #c82333;
+}
+
+.upgrade-button.attack {
+  background-color: #fd7e14;
+  color: white;
+}
+
+.upgrade-button.attack:hover {
+  background-color: #e86c09;
+}
+
+/* Iconos y elementos de información */
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+/* Ajustes específicos para la sección de personajes */
+#characters-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+#characters-section h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Estilos para los iconos de Lucide */
+.lucide-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 640px) {
+  .card {
+    margin: 0.5rem 0;
+  }
+  
+  .stats-container {
+    padding: 0.75rem;
+  }
+  
+  .upgrade-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+  }
+}

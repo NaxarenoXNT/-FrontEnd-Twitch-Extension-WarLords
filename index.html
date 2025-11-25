@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Extension</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/streamerscards.css">
+    <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/lucide.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const API_BASE_URL = 'http://localhost:3000';
+    </script>
+    <script type="module" src="authfront.js"></script>
+    <script type="module" src="ui.js"></script>
+    <script type="module" src="api.js"></script>
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">Inicio</a>
+            <div class="burger-menu">
+                <div class="burger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Canjeo</a></li>
+                    <li><a href="#">Donaciones</a></li>
+                    <li class="auth-links">
+                        <a href="#" id="show-login">Iniciar Sesión</a>
+                    </li>
+                    <li class="auth-links">
+                        <a href="#" id="show-register">Registrarse</a>
+                    </li>
+                    <li class="user-links" style="display: none;">
+                        <a href="#" id="logout-button">Cerrar Sesión</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+    
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1>Extension</h1>
+                <p>Se parte de y acompaña a tu lider en la conquista, solo te esper gloria o la muerte.</p>
+                <a href="#" class="btn-1">Información</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="modal-overlay" id="auth-modal-overlay"></div>
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="web-login-form">
+                <div class="form-group">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="login-password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn-1">Ingresar</button>
+            </form>
+            <p class="switch-form">¿No tienes cuenta? <a href="#" id="switch-to-register">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Registro</h2>
+            <form id="web-register-form">
+                <div class="form-group">
+                    <input type="text" id="register-username" placeholder="Nombre de Usuario" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="register-email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="register-password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn-1">Registrar</button>
+            </form>
+            <p class="switch-form">¿Ya tienes cuenta? <a href="#" id="switch-to-login">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+
+        <!-- Twitch Integration Section -->
+        <section id="twitch-integration-section" class="auth container" style="display: none;">
+            <div class="auth-content">
+                <div id="twitch-link-content">
+                    <h2>Vincular con Twitch</h2>
+                    <button id="twitch-login" class="btn-1 twitch-button">Conectar con Twitch</button>
+                </div>
+                <div id="twitch-unlink-content" style="display: none;">
+                    <h2>Cuenta de Twitch Vinculada</h2>
+                    <button id="twitch-logout-button" class="btn-1 twitch-button">Desvincular cuenta</button>
+                </div>
+            </div>
+        </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard-section" class="dashboard container" style="display: none;">
+        <div class="dashboard-content">
+            <div class="user-info">
+                <h2>Dashboard de <span id="username-display"></span></h2>
+            </div>
+            
+            <!-- Streamers Section -->
+            <div class="streamers-section">
+                <h3>Streamers Seguidos</h3>
+                <div id="streamers-list" class="streamers-grid"></div>
+            </div>
+
+            <!-- Streamer Cards Section -->
+            <div id="streamer-cards-root"></div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="general container">
+        <h2>Facciones Terrenales</h2>
+        <div class="general-content">
+            <div class="general-1 txt">
+                <h3>Facción 1</h3>
+                <p>ipsam alias, eius neque, mollitia ducimus labore velit obcaecati
+                     officia modi inventore tempore odio. Praesentium deleniti dolores 
+                     et officia? Dolorum, facilis.</p>
+            </div>
+            <div class="general-2 txt">
+                <h3>Facción 2</h3>
+                <p>ipsam alias, eius neque, mollitia ducimus labore 
+                    velit obcaecati officia modi inventore tempore odio. 
+                    Praesentium deleniti dolores et officia? Dolorum, facilis.</p>
+            </div>
+            <div class="general-3 txt">
+                <h3>Facción 3</h3>
+                <p>ipsam alias, eius neque, mollitia ducimus labore velit 
+                    obcaecati officia modi inventore tempore odio. Praesentium 
+                    deleniti dolores et officia? Dolorum, facilis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="info-1">
+        <div class="info-content-container">
+            <h2>Información</h2>
+            <div class="info-circle">
+                <div class="circle-txt">
+                    <div class="circle-1">
+                        <h2>Texto de prueba 1</h2>
+                    </div>
+                    <p>inventore tempore odio. Praesentium deleniti dolores
+                         et officia? Dolorum, facilis.</p>
+                </div>
+                <div class="circle-txt">
+                    <div class="circle-1">
+                        <h2>Texto de prueba 2</h2>
+                    </div>
+                    <p>inventore tempore odio. Praesentium deleniti dolores e
+                        t officia? Dolorum, facilis.</p>
+                </div>
+                <div class="circle-txt">
+                    <div class="circle-1">
+                        <h2>Texto de prueba 3</h2>
+                    </div>
+                    <p>inventore tempore odio. Praesentium deleniti dolores e
+                        t officia? Dolorum, facilis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section class="general g2 container">
+        <h2>Programa</h2>
+        <div class="general-content">
+            <div class="general-4 txt">
+                <h3>Programa 4</h3>
+                <p>ipsam alias, eius neque, mollitia ducimus labore velit
+                     obcaecati officia modi inventore tempore odio.
+                      Praesentium deleniti dolores et officia? Dolorum, facilis.</p>
+            </div>
+            <div class="general-5 txt">
+                <h3>Programa 5</h3>
+                <p>ipsam alias, eius neque, mollitia ducimus labore
+                     velit obcaecati officia modi inventore tempore odio. 
+                     Praesentium deleniti dolores et officia? Dolorum, facilis.</p>
+            </div>
+            <div class="general-6 txt">
+                <h3>Programa 6</h3>
+                <p>ipsam alias, eius neque, mollitia ducimus labore velit
+                     obcaecati officia modi inventore tempore odio. Praesentium 
+                     deleniti dolores et officia? Dolorum, facilis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <footer class="footer container">
+        <h2>Contacto</h2>
+        <form>
+            <input class="campo" type="text" placeholder="Nombre">
+            <input class="campo" type="email" placeholder="Email">
+            <input type="submit" class="btn-2" value="Enviar">
+        </form>
+    </footer>
+</body>
+</html>
